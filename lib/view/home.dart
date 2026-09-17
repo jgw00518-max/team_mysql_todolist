@@ -64,7 +64,7 @@ class _HomeState extends State<Home> {
   }
 
   Future<void> getJSONData({bool refreshImages = false}) async {
-    var url = Uri.parse("http://192.168.20.229:8000/select");
+    var url = Uri.parse("http://192.168.20.229:8000/todos/select");
     var response = await http.get(url);
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
 
