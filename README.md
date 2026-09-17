@@ -1,4 +1,4 @@
-# image_todo_list_app
+# team_mysql_todolist
 
 A new Flutter project.
 
