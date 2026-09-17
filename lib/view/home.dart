@@ -40,31 +40,38 @@ class _HomeState extends State<Home> {
       body: Center(
         child: data.isEmpty
         ? const Center(child: Text("데이터가 없습니다."))
-        : ListView.builder(
-          itemCount: data.length,
-          itemBuilder: (context, index) {
-            return Card(
-              color: data[index] % 2 == 0
-              ? Colors.amber[50]
-              : Colors.pink[50],
-              child: Row(
-                children: [
-                  Image.network(
-                    "http://192.168.20.229:8000/view/${data[index]['seq']}?v=$imageVersion",
-                    width: 100
-                  ),
-                  Text("${data[index]['image']} / ${data[index]['insertdate']}")
-                ],
-              ),
-            );
-          },
+        : Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView.builder(
+            itemCount: data.length,
+            itemBuilder: (context, index) {
+              return Card(
+                color: index % 2 == 0
+                ? Colors.amber[50]
+                : Colors.pink[50],
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Image.network(
+                        "http://192.168.20.53:8000/todos/view/${data[index]['seq']}?v=$imageVersion",
+                        width: 70,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Text("${data[index]['content']} / ${data[index]['insertdate'].toString().substring(0, 10)}  ${data[index]['insertdate'].toString().substring(11)}")
+                  ],
+                ),
+              );
+            },
+          ),
         ),
       ),
     );
   }
 
   Future<void> getJSONData({bool refreshImages = false}) async {
-    var url = Uri.parse("http://192.168.20.229:8000/todos/select");
+    var url = Uri.parse("http://192.168.20.53:8000/todos/select");
     var response = await http.get(url);
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
 
