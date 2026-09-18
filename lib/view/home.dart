@@ -54,7 +54,8 @@ class _HomeState extends State<Home> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Image.network(
-                        "http://192.168.20.53:8000/todos/view/${data[index]['seq']}?v=$imageVersion",
+                      "http://192.168.20.21:8000/todos/view/${data[index]['seq']}?v=$imageVersion",
+                    // "http://192.168.0.109:8000/todos/view/${data[index]['seq']}?v=$imageVersion",
                         width: 70,
                         fit: BoxFit.cover,
                       ),
@@ -71,7 +72,8 @@ class _HomeState extends State<Home> {
   }
 
   Future<void> getJSONData({bool refreshImages = false}) async {
-    var url = Uri.parse("http://192.168.20.53:8000/todos/select");
+    var url = Uri.parse("http://192.168.20.21:8000/todos/select");
+    // var url = Uri.parse("http://192.168.0.109:8000/todos/select",);
     var response = await http.get(url);
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
 

@@ -29,14 +29,19 @@ async def view(seq: int):
     conn = connect()
     curs = conn.cursor()
 
-    curs.execute("SELECT image FROM image WHERE seq = %s", (seq,))
+    # curs.execute("SELECT image FROM image WHERE seq = %s", (seq,))
+    curs.execute("""SELECT i.image 
+          FROM collect AS c 
+          JOIN image AS i ON c.image_seq = i.seq 
+          WHERE c.todolist_seq = %s
+          """, (seq,))
     row = curs.fetchone()
     conn.close()
 
     if row and row[0]:
       return Response(
         content=row[0],
-        media_type="image/jpeg",
+        media_type="image/png",
         headers={"Cache-Control": "no-cache, no-store, must-revalidate"}
       )
     else:

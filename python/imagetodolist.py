@@ -2,14 +2,14 @@ from fastapi import FastAPI
 
 from routes.insert_todo import router as insert_todo_router
 from routes.select_todo import router as select_todo_router
-from routes.update_todo import router as update_todo_router
+# from routes.update_todo import router as update_todo_router
 
 app = FastAPI(title="Image Todo List API")
 
 # /todos 주소를 기능별 router 파일로 전달한다.
 app.include_router(select_todo_router, prefix="/todos", tags=["todos-select"])
 app.include_router(insert_todo_router, prefix="/todos", tags=["todos-insert"])
-app.include_router(update_todo_router, prefix="/todos", tags=["todos-update"])
+# app.include_router(update_todo_router, prefix="/todos", tags=["todos-update"])
 
 
 @app.get("/")
@@ -20,5 +20,5 @@ async def health_check():
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app, host="192.168.20.229", port=8000)
+    uvicorn.run(app, host="192.168.20.21", port=8000)
 
