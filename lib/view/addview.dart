@@ -19,7 +19,7 @@ class _AddViewState extends State<Addview> {
   Future<void> insertTodo() async {
     final uri = Uri.parse(
       //'http://팀_FASTAPI_서버_IP:8000/todos/insertTodo'
-      'http://192.168.20.21:8000/todos/insertTodo',
+      'http://192.168.20.52:8000/todos/insertTodo',
       ).replace(
       queryParameters: {
         'content': contentController.text,
@@ -61,7 +61,7 @@ class _AddViewState extends State<Addview> {
                 Expanded(
                   child: Image.network(
                     //'http://팀_FASTAPI_서버_IP:8000/todos/view/$imageSeq'
-                    'http://192.168.20.21:8000/todos/view/$imageSeq',
+                    'http://192.168.20.52:8000/todos/view/$imageSeq',
                     height: 120,
                   ),
                 ),
@@ -79,7 +79,7 @@ class _AddViewState extends State<Addview> {
                         3,
                         (index) => Image.network(
                           // 'http://팀_FASTAPI_서버_IP:8000/todos/view/${index + 1}'
-                           'http://192.168.20.21:8000/todos/view/${index + 1}',
+                          'http://192.168.20.52:8000/todos/view/${index + 1}',
                         ),
                       ),
                     ),
